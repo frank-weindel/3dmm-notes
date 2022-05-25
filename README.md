@@ -9,6 +9,23 @@ KIDWORLD.CPP
     * Creates script interpreters
     * !!! !!! !!! Pick up here
 
+GFX.CPP (kauai)
+* `GPT` class = "Graphics port"
+    * Portable graphics abstraction object containing HDC (for Windows)
+    * `PgptNewOffscreen()` static method
+        * Create an offscreen port
+        * Allocates an in memory bitmap (BITMAPINFO)
+* `GNV` class = "Graphics environment"
+    * Inherits `BASE` class
+    * What the difference between this and GPT???
+    * Contains a `GPT` instance
+    * Every _FastUpdate is two new `GNV`
+    * These are used emphemerally
+
+MOVIE.CPP (engine)
+* `MVIE` class = 3MM Movie!
+* !!!
+
 Places Script Interpreters are Created (Not including TOOLS)
 * (kauai) KIDHELP.CPP -> TXHG::_FRunScript
 * (kauai) KIDSPACE.CPP -> GOK::_FSetRep
@@ -300,13 +317,28 @@ GROUPS.CPP (kauai)
 APPB.CPP (kauai)
 * "Common base application class methods."
 * APPBWIN.CPP is the Windows implementation
-  * Contains **WinMain** entry point
-    * Calls FrameMain() symbol
+    * Contains **WinMain** entry point
+      * Calls FrameMain() symbol
 * APPB is base class for 3DMM's `APP` class
-
+    * 3DMM's `APP` class completely overrides `_FInitOS()`
+* `WIG` struct = "Windows Specific Globals"
+    * Exists as `vwig` global
+    * Values set in `WinMain`, `_FInitOS`
+    * Contains things like
+        * HINSTANCE
+        * command line string
+        * HWND (app)
+        * HDC (app)
+        * HWND ("MDI client window")
+        * HACCEL (main accerator table)
+        * HWND (next clipboard viewer)
+        * main thread ID
 
 UTEST.CPP (studio)
 * `APP` class, extends `APPB`
+* `KWA` class = "KidWorld for the App Class"
+    * Inherits `WOKS` class
+    * Something to do with splash screen
 
 CRF.CPP (kauai)
 * `CRF` class = "Chunky Resource File"
